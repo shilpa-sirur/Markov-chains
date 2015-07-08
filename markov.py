@@ -33,15 +33,18 @@ def make_text(chains):
 # grab the key tuple and the associated value, index the second word of 
 # the key tuple and combine it with the value and from that find the new 
 # associated value 
-    random_key1 = random.choice(chains.keys())
-    new_key = random_key1[1]
-    random_key2 = str(random_key1[0] + " " + random_key1[1])
-    for i in range(9):
+#This gets the first key pair and the value and turns the key tuples into a string
+random_key1 = random.choice(chains.keys())
+random_value = random.choice(chains[random_key1])
+random_text = str(random_key1[a] + " " + random_key1[a+1]) + " " + str(random_value)
 
-        random_value = random.choice(chains[random_key1])
-        random_text = random_key2 + " " + str(random_value)
-        print random_text
-
+for i in range(9): 
+        # This will select second word of key pair and combine it with value to create new key
+    a = 0
+    new_key1 = (random_key1[a+1], random_value)
+    new_value1 = random.choice(chains[new_key1])
+    random_text2 = str(new_key1) + " " + str(new_value)
+    print random_text2
 make_text(chains)    
 
 
