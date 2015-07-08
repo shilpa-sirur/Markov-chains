@@ -1,4 +1,6 @@
 import sys
+import random
+import string
 
 
 def make_chains(corpus):
@@ -23,12 +25,24 @@ def make_chains(corpus):
         bigram_dict[bigram].append(value_word)  
     print bigram_dict
     return bigram_dict
-make_chains("green-eggs.txt")
+chains = make_chains("green-eggs.txt")
 
-# def make_text(chains):
-#     """Takes dictionary of markov chains; returns random text."""
+def make_text(chains):
+    """Takes dictionary of markov chains; returns random text."""  
 
-#     return "Here's some random text."
+# grab the key tuple and the associated value, index the second word of 
+# the key tuple and combine it with the value and from that find the new 
+# associated value 
+    random_key1 = random.choice(chains.keys())
+    new_key = random_key1[1]
+    random_key2 = str(random_key1[0] + " " + random_key1[1])
+    for i in range(9):
+
+        random_value = random.choice(chains[random_key1])
+        random_text = random_key2 + " " + str(random_value)
+        print random_text
+
+make_text(chains)    
 
 
 # # Change this to read input_text from a file, deciding which file should
@@ -36,11 +50,12 @@ make_chains("green-eggs.txt")
 # # Python docs for sys.argv)
 
 # input_text = "Some text"
+# input_text =   
 
-# # Get a Markov chain
+# # # Get a Markov chain
 # chain_dict = make_chains(input_text)
 
-# # Produce random text
+# # # Produce random text
 # random_text = make_text(chain_dict)
 
 # print random_text
