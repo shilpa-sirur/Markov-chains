@@ -23,7 +23,7 @@ def make_chains(corpus):
         if bigram not in bigram_dict:
             bigram_dict[bigram] = []
         bigram_dict[bigram].append(value_word)  
-    print bigram_dict
+    # print bigram_dict
     return bigram_dict
 chains = make_chains("green-eggs.txt")
 
@@ -34,31 +34,19 @@ def make_text(chains):
 # the key tuple and combine it with the value and from that find the new 
 # associated value 
 #This gets the first key pair and the value and turns the key tuples into a string
-random_key1 = random.choice(chains.keys())
-random_value = random.choice(chains[random_key1])
-random_text = str(random_key1[a] + " " + random_key1[a+1]) + " " + str(random_value)
-
-for i in range(9): 
+    random_key1 = random.choice(chains.keys())
+    random_value = random.choice(chains[random_key1])
+    random_text = str(random_key1[0] + " " + random_key1[1]) + " " + str(random_value)
+    new_key1 = (random_key1[1], random_value)
+    # print new_key1
+    while new_key1 in chains: 
         # This will select second word of key pair and combine it with value to create new key
-    a = 0
-    new_key1 = (random_key1[a+1], random_value)
-    new_value1 = random.choice(chains[new_key1])
-    random_text2 = str(new_key1) + " " + str(new_value)
-    print random_text2
+        new_value1 = random.choice(chains[new_key1])
+        new_key1 = (new_key1[1], new_value1)
+        random_text = random_text + " " + new_value1 + " "
+    print random_text
+        # random_text2 = str(new_key1) + " " + str(new_value1)
 make_text(chains)    
 
 
-# # Change this to read input_text from a file, deciding which file should
-# # be used by examining the `sys.argv` arguments (if neccessary, see the
-# # Python docs for sys.argv)
 
-# input_text = "Some text"
-# input_text =   
-
-# # # Get a Markov chain
-# chain_dict = make_chains(input_text)
-
-# # # Produce random text
-# random_text = make_text(chain_dict)
-
-# print random_text
